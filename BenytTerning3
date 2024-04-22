@@ -1,0 +1,85 @@
+package objekter;
+
+import java.util.ArrayList;
+
+// a program that rolls dice using ArrayList
+public class BenytTerning {
+	public static void main(String[] args) {
+		// opretter alle terning objekterne
+		Terning terning1, terning2, terning3, terning4, terning5, terning6, terning7, terning8, terning9, terning10,
+				terning11, terning12;
+		terning1 = new Terning();
+		terning2 = new Terning();
+		terning3 = new Terning();
+		terning4 = new Terning();
+		terning5 = new Terning();
+		terning6 = new Terning();
+		terning7 = new Terning();
+		terning8 = new Terning();
+		terning9 = new Terning();
+		terning10 = new Terning();
+		terning11 = new Terning();
+		terning12 = new Terning();
+
+		// putter alle terning objekterne på en liste
+		ArrayList<Terning> liste = new ArrayList<>();
+		liste.add(terning1);
+		liste.add(terning2);
+		liste.add(terning3);
+		liste.add(terning4);
+		liste.add(terning5);
+		liste.add(terning6);
+		liste.add(terning7);
+		liste.add(terning8);
+		liste.add(terning9);
+		liste.add(terning10);
+		liste.add(terning11);
+		liste.add(terning12);
+
+		int øjne;
+		int antalKast = 0;
+		int sum = 0;
+		int seksere = 0;
+		// kast terningnerne indtil antal øjne der vises er over 55 (42 har højest chance for at blive rullet)
+		while (sum < 43) {
+			//reset sum
+			sum=0;
+			seksere=0;
+			// kaster alle terningerne
+			liste.forEach((n) -> n.kast());
+			// øger antal kast med 1
+			antalKast++;
+
+			System.out.println("kast " + antalKast + " gav: ");
+
+			// en løkke der løber iggennem alle terningerne
+			int i = 0;
+			while (i < liste.size()) {
+				// tilføjer terningens værdi til øjne
+				øjne = liste.get(i).getVærdi();
+				// udksriver værdien
+				System.out.print(øjne + ", ");
+				// lægger værdien til sum
+				sum = sum + øjne;
+				// hvis øjne(terningen) har slået seks skesere++
+				if (øjne == 6) {
+					seksere++;
+				}
+				i++;
+			}
+			
+			System.out.println("\nSammenlagt sum: "+sum);
+			System.out.println("Der blev slået "+seksere+" seksere");
+			i = 0;
+		}
+		// liste.forEach((n) -> {
+		// System.out.print(n.getVærdi()+", ");
+		// if (n.getVærdi()==6) seksere++;
+		// });
+
+		// liste.forEach((n) ->{
+		// sum = n.getVærdi()+sum;
+		// });
+
+	}
+}
